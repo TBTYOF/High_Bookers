@@ -4,13 +4,25 @@
       <div class="navbar-header col-xs-4">
         <h4 style="font-size: 20px; color: white;">Bookers</h4>
       </div>
-      <ul class="nav navbar-nav col-xs-7 text-right">
-        <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home</a></li>
-        <li><a href="/home/about"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About</a></li>
-        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sin up</a></li>
-        <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login</a></li>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home</a></li>
+          <li><a href="/home/about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>　Users</a></li>
+          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>　Books</a></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　logout
+            <% end %>
+          </li>
       </ul>
-
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home</a></li>
+          <li><a href="/home/about"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About</a></li>
+          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sin up</a></li>
+          <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login</a></li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
