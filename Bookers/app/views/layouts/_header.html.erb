@@ -6,9 +6,21 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home</a></li>
-          <li><a href="/home/about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>　Users</a></li>
-          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>　Books</a></li>
+          <li>
+            <%= link_to user_path(user.id) do %>
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　Users
+            <% end %>
+          </li>
+          <li>
+            <%= link_to books_path do %>
+              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　Books
+            <% end %>
+          </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　logout
@@ -17,10 +29,26 @@
       </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home</a></li>
-          <li><a href="/home/about"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About</a></li>
-          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sin up</a></li>
-          <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login</a></li>
+          <li>
+            <%= link_to root_path do %>
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to home_about_path do %>
+              <span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sin up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login
+            <% end %>
+          </li>
         </ul>
       <% end %>
     </div>
