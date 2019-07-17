@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get "home/about" => 'users#about'
 
   resources :books
+  resources :users
 end
