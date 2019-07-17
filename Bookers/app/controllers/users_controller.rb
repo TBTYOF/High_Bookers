@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = current_user.id
+		@user = User.find(params[:id])
 	end
 
 	private
