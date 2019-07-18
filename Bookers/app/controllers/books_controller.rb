@@ -1,16 +1,26 @@
 class BooksController < ApplicationController
+	before_action :ensure_correct_user, {only:[:edit, :update]}
+
+	def ensure_correct_user
+		if current_user.id != params[:id].to_i
+			redirect_to books_path
+		end
+	end
+
+
 	def index
+		@users = User.all
 		@books = Book.all
 		@book = Book.new
 		@new_book = Book.new
-		@signin_user = current_user
+		@user_info = current_user
 	end
 
 	def show
 		@book = Book.find(params[:id])
 		@user = @book.user
 		@new_book = Book.new
-		@signin_user = current_user
+		@user_info = @user
 	end
 
 	def edit
@@ -42,9 +52,9 @@ class BooksController < ApplicationController
 			redirect_to book_path(@book), notice: 'You have creatad book successfully.'
 		else
 			@books = Book.all
-			@signin_user = current_user
+			@user_info = current_user
 			@new_book = Book.new
-			render 'books/index', signin_user: @signin_user, new_book: @new_book, books: @books
+			render 'books/index', user_info: @user_info, new_book: @new_book, books: @books
 		end
 	end
 
