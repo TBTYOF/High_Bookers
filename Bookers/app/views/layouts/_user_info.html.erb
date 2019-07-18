@@ -1,0 +1,25 @@
+<h2>User info</h2>
+			<%= attachment_image_tag @user, :profile_image, :fill, 100,100, format: 'jpeg', fallback: "no_image.jpg", size:'100x100' %>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>name</td>
+						<td><%= signin_user.name %></td>
+					</tr>
+					<tr>
+						<td>intoroduction</td>
+						<td><%= signin_user.introduction %></td>
+					</tr>
+				</tbody>
+			</table>
+			<%= link_to edit_user_path(signin_user), class: "btn btn-default btn-block" do %>
+				<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+			<h2>New book</h2>
+			<%= form_for(new_book, url: books_path) do |f| %>
+				<label for="book_title">Title</label>
+				<%= f.text_field :title %>
+				<label for="book_opinion">Opinion</label>
+				<%= f.text_area :body %>
+				<%= f.submit 'Create Book' %>
+			<% end %>
