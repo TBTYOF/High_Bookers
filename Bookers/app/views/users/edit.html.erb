@@ -1,3 +1,14 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation" class="alert alert-danger">
+		<h2 class="error_font"><%= @user.errors.count %>errors prohibited this book from being saved:</h2>
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
 <h1>User info</h1>
 <%= form_for(@user) do |f| %>
 	<label for="user_name">Name</label>
